@@ -1,0 +1,2 @@
+plaid-python==2.0.1
+requests==2.14.2
