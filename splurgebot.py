@@ -21,7 +21,7 @@ transaction_ids = set()
 
 
 def get_latest_transactions():
-    today = datetime.date.today().strftime('%Y-%m-%d')
+    today = datetime.date.tody().strftime('%Y-%m-%d')
     return [transaction
             for transaction in plaid_client.Transactions.get(PLAID_ACCESS_ID, '1972-01-01', today)['transactions']
             if transaction['transaction_id'] not in transaction_ids]
@@ -39,7 +39,6 @@ def main():
             transaction_ids.add(transaction['transaction_id'])
             if transaction['amount'] >= ALERT_FOR_TRANSACTIONS_GTE:
                 alert(transaction)
-                break
 
         time.sleep(CHECK_FOR_NEW_TRANSACTIONS_EVERY_X_MINUTES * 60)
 
