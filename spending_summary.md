@@ -227,5 +227,4 @@ $ python get_send_summary.py
 
 Voila!
 
-![mobile screenshot](screenshot.png)
-
+<img src='https://github.com/zevaverbach/spending_summary/blob/master/screenshot.png' width='250'>
