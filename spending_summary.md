@@ -24,7 +24,7 @@ PLAID_ENV = os.getenv('PLAID_ENV')
 
 1. Run `server.py` (Python 2 only 😦) and log into Chase with the test credentials ("user_good" and "pass_good" as of 5/24/2017). It prints the access token to your terminal: Grab that and put it into a `CHASE_ACCESS_TOKEN` environment variable.  Repeat this for Bank of America and put that access token into `BOFA_ACCESS_TOKEN`.
 
-1. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as environment variables too (see below).
+1. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and [Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as environment variables too (see below).
 
 1. Put your cell phone number in an environment variable as `MY_CELL`.
 
