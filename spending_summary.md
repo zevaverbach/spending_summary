@@ -1,3 +1,5 @@
+# Daily SMS Spending Summaries With Plaid and Twilio
+
 Your bank lets you set up SMS alerts for various triggers; it might even give you the option of receiving periodic spending summaries (mine doesn't!).
 But what about a daily SMS summary of your spending across *all* your accounts?  This is harder to come by, so let's roll our own:
 
