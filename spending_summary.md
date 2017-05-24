@@ -45,7 +45,7 @@ $ pip install python-plaid twilio
 
 ## Get Some Transactions
 
-Make yourself a Plaid client instance and grab some transactions from Chase:
+Make yourself a `plaid.Client` instance and grab some transactions from Chase:
 
 [get_some_transactions_v1.py](https://github.com/zevaverbach/spending_summary/blob/master/get_some_transactions_v1.py)
 
