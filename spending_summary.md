@@ -3,8 +3,9 @@ But what about a daily SMS summary of your spending across *all* your accounts? 
 
 ## Pre-work
 
-1. [Nab a sandbox account](https://dashboard.plaid.com/signup) from Plaid, and put those credentials into `PLAID_CLIENT_ID`, `PLAID_SECRET`, `PLAID_PUBLIC_KEY` environment variables.  While you're at it, 
-[ask for access](https://dashboard.plaid.com/overview/request-development) the development API (it'll take a few days).  For now, though, create an env var `PLAID_ENV` and set it to 'sandbox'.
+
+1. <a href="https://dashboard.plaid.com/signup" target="_blank">Nab a sandbox account</a> from Plaid, and put those credentials into `PLAID_CLIENT_ID`, `PLAID_SECRET`, `PLAID_PUBLIC_KEY` environment variables.  While you're at it, 
+<a href="https://dashboard.plaid.com/overview/request-development" target="_blank">ask for access</a> the development API (it'll take a few days).  For now, though, create an env var `PLAID_ENV` and set it to 'sandbox'.
 
 ```bash
 export PLAID_CLIENT_ID='somechars1234'
@@ -13,7 +14,7 @@ export PLAID_SECRET='somesecretchars1234'
 export PLAID_ENV='sandbox'
 ```
 
-2. Clone the [quickstart for Plaid](https://github.com/plaid/quickstart) and reference those environment variables in the Python quickstart's `server.py`.
+2. Clone the <a href="https://github.com/plaid/quickstart" target="_blank">quickstart for Plaid</a> and reference those environment variables in the Python quickstart's `server.py`.
 
 ```python
 PLAID_CLIENT_ID = os.getenv('PLAID_CLIENT_ID')
@@ -24,7 +25,7 @@ PLAID_ENV = os.getenv('PLAID_ENV')
 
 3. Run `server.py` (Python 2 only 😦) and log into Chase with the test credentials ("user_good" and "pass_good" as of 5/24/2017). It prints the access token to your terminal: Grab that and put it into a `CHASE_ACCESS_TOKEN` environment variable.  Repeat this for Bank of America and put that access token into `BOFA_ACCESS_TOKEN`.
 
-4. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and [Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as environment variables too (see below).
+4. <a href="https://www.twilio.com/console/account/settings" target="_blank">Grab your Twilio credentials</a> and <a href="https://www.twilio.com/console/phone-numbers/incoming" target="_blank">Twilio incoming phone number</a> and make sure those are available as environment variables too (see below).
 
 5. Put your cell phone number in an environment variable as `MY_CELL`.
 
@@ -47,8 +48,7 @@ $ pip install python-plaid twilio
 
 Make yourself a `plaid.Client` instance and grab some transactions from Chase:
 
-[get_some_transactions_v1.py](https://github.com/zevaverbach/spending_summary/blob/master/get_some_transactions_v1.py)
-
+<a href="https://github.com/zevaverbach/spending_summary/blob/master/get_some_transactions_v1.py" target="_blank">get_some_transactions_v1.py</a>
 ```python
 import os
 from typing import List
@@ -126,7 +126,7 @@ Let's also
 4. just return transactions.
 
 
-[get_some_transactions_v2.py](https://github.com/zevaverbach/spending_summary/blob/master/get_some_transactions_v2.py)
+<a href="https://github.com/zevaverbach/spending_summary/blob/master/get_some_transactions_v2.py" target="_blank">get_some_transactions_v2.py</a>
 
 ```python
 import math
@@ -176,7 +176,7 @@ Okay, that seems legit -- airfare refund, I guess.  Let's keep negative items in
 
 Now let's get all the transactions from yesterday, making sure to pull them from both accounts.
 
-[get_yesterdays.py](https://github.com/zevaverbach/spending_summary/blob/master/get_yesterdays.py)
+<a href="https://github.com/zevaverbach/spending_summary/blob/master/get_yesterdays.py" target="_blank">get_yesterdays.py</a>
 
 ```python
 ...
@@ -196,7 +196,7 @@ As of 5/24/2017, the most recent transactions available in these sandbox account
 
 Let's send an SMS to ourselves with the total spent yesterday!
 
-[send_summary.py](https://github.com/zevaverbach/spending_summary/blob/master/send_summary.py)
+<a href="https://github.com/zevaverbach/spending_summary/blob/master/send_summary.py" target="_blank">get_send_summary.py</a>
 
 ```python
 ...
