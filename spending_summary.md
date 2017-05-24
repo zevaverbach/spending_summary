@@ -97,7 +97,7 @@ Inspecting the output of `get_some_transactions`, we see that there are multiple
 ```
 ## Get **The Right** Transactions
 
-Looking at the transactions themselves, we see that there is a `category` field which sometimes has a list of values, sometimes `None`.
+Looking at the transactions themselves, we see that there is a `category` field which sometimes has a list of values, sometimes `None`.  What are the categories?
 
 ```python
 >>> some_transactions['transactions'].keys()
@@ -161,6 +161,8 @@ def get_some_transactions(access_token: str, start_date: str, end_date: str) -> 
 Now there are just 265 transactions.  Are any of them negative?
 
 ```python
+>>> len(some_transactions)
+265
 >>> pprint([transaction for transaction in some_transactions if transaction['amount'] < 0])
 [{'amount': -500,
   'category': ['Travel', 'Airlines and Aviation Services'],
