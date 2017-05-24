@@ -219,6 +219,7 @@ def send_summary(transactions: List[dict]) -> None:
 
 if __name__ == "__main__":
     send_summary(get_yesterdays())
+```
 
 ```bash
 $ python get_send_summary.py 
