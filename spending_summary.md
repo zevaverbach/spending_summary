@@ -13,7 +13,7 @@ export PLAID_SECRET='somesecretchars1234'
 export PLAID_ENV='sandbox'
 ```
 
-1. Clone the [quickstart for Plaid](https://github.com/plaid/quickstart) and reference those environment variables in the Python quickstart's `server.py`.
+2. Clone the [quickstart for Plaid](https://github.com/plaid/quickstart) and reference those environment variables in the Python quickstart's `server.py`.
 
 ```python
 PLAID_CLIENT_ID = os.getenv('PLAID_CLIENT_ID')
@@ -22,11 +22,11 @@ PLAID_PUBLIC_KEY = os.getenv('PLAID_PUBLIC_KEY')
 PLAID_ENV = os.getenv('PLAID_ENV')
 ```
 
-1. Run `server.py` (Python 2 only 😦) and log into Chase with the test credentials ("user_good" and "pass_good" as of 5/24/2017). It prints the access token to your terminal: Grab that and put it into a `CHASE_ACCESS_TOKEN` environment variable.  Repeat this for Bank of America and put that access token into `BOFA_ACCESS_TOKEN`.
+3. Run `server.py` (Python 2 only 😦) and log into Chase with the test credentials ("user_good" and "pass_good" as of 5/24/2017). It prints the access token to your terminal: Grab that and put it into a `CHASE_ACCESS_TOKEN` environment variable.  Repeat this for Bank of America and put that access token into `BOFA_ACCESS_TOKEN`.
 
-1. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and [Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as environment variables too (see below).
+4. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and [Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as environment variables too (see below).
 
-1. Put your cell phone number in an environment variable as `MY_CELL`.
+5. Put your cell phone number in an environment variable as `MY_CELL`.
 
 ```bash
 export CHASE_ACCESS_TOKEN='access-sandbox-someprettysecretchars1234'
@@ -37,7 +37,7 @@ export MY_TWILIO_NUM='+11111111111'
 export MY_CELL='+12222222222'
 ```
 
-1. Install just a couple of dependencies:
+6. Install just a couple of dependencies:
 
 ```bash
 $ pip install python-plaid twilio
