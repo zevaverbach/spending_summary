@@ -200,24 +200,30 @@ As of 5/24/2017, the most recent transactions available in these sandbox account
 
 Let's send an SMS to ourselves with the total spent yesterday!
 
-<a href="https://github.com/zevaverbach/spending_summary/blob/master/send_summary.py" target="_blank">get_send_summary.py</a>
+<a href="https://github.com/zevaverbach/spending_summary/blob/master/send_summary.py" target="_blank">send_summary.py</a>
 
 ```python
 ...
 from twilio.rest import Client as TwilioClient
+
+from get_yesterdays import get_yesterdays
 
 twilio_client = TwilioClient(os.getenv('TWILIO_SID'), os.getenv('TWILIO_TOKEN'))
 
 
 def send_summary(transactions: List[dict]) -> None:
     total_spent = sum(transaction['amount'] for transaction in transactions)
-
     message = f'You spent ${total_spent} yesterday. 💸'
-
     twilio_client.api.account.messages.create(to=os.getenv('MY_CELL'), from_=os.getenv('MY_TWILIO_NUM'), body=message)
     
 
+if __name__ == "__main__":
+    send_summary(get_yesterdays())
+
+```bash
+$ python get_send_summary.py 
 ```
+
 Voila!
 
 ![mobile screenshot](screenshot.png)
