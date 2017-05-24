@@ -3,10 +3,8 @@ But what about a daily SMS summary of your spending across *all* your accounts? 
 
 ## Pre-work
 
-1. [Nab a sandbox account](https://dashboard.plaid.com/signup) from Plaid, and put those credentials into `PLAID_CLIENT_ID`, `PLAID_SECRET`,
-and `PLAID_PUBLIC_KEY` environment variables.  While you're at it, 
-[ask for access](https://dashboard.plaid.com/overview/request-development) the development API (it'll take a few days).  
-For now, though, create an env var `PLAID_ENV` and set it to 'sandbox'.
+1. [Nab a sandbox account](https://dashboard.plaid.com/signup) from Plaid, and put those credentials into `PLAID_CLIENT_ID`, `PLAID_SECRET`, `PLAID_PUBLIC_KEY` environment variables.  While you're at it, 
+[ask for access](https://dashboard.plaid.com/overview/request-development) the development API (it'll take a few days).  For now, though, create an env var `PLAID_ENV` and set it to 'sandbox'.
 
 ```bash
 export PLAID_CLIENT_ID='somechars1234'
@@ -15,8 +13,7 @@ export PLAID_SECRET='somesecretchars1234'
 export PLAID_ENV='sandbox'
 ```
 
-1. Clone the [quickstart for Plaid](https://github.com/plaid/quickstart) and reference those environment variables in the 
-Python quickstart's `server.py`.
+1. Clone the [quickstart for Plaid](https://github.com/plaid/quickstart) and reference those environment variables in the Python quickstart's `server.py`.
 
 ```python
 PLAID_CLIENT_ID = os.getenv('PLAID_CLIENT_ID')
@@ -25,13 +22,9 @@ PLAID_PUBLIC_KEY = os.getenv('PLAID_PUBLIC_KEY')
 PLAID_ENV = os.getenv('PLAID_ENV')
 ```
 
-1. Run `server.py` (Python 2 only 😦) and log into Chase with the test credentials ("user_good" and 
-"pass_good" as of 5/24/2017). It prints the access token to your terminal: Grab that and put it into a 
-`CHASE_ACCESS_TOKEN` environment variable.  Repeat this for Bank of America and put that access token into `BOFA_ACCESS_TOKEN`.
+1. Run `server.py` (Python 2 only 😦) and log into Chase with the test credentials ("user_good" and "pass_good" as of 5/24/2017). It prints the access token to your terminal: Grab that and put it into a `CHASE_ACCESS_TOKEN` environment variable.  Repeat this for Bank of America and put that access token into `BOFA_ACCESS_TOKEN`.
 
-1. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and 
-[Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as 
-environment variables too (see below).
+1. [Grab your Twilio credentials](https://www.twilio.com/console/account/settings) and Twilio incoming phone number](https://www.twilio.com/console/phone-numbers/incoming) make sure those are available as environment variables too (see below).
 
 1. Put your cell phone number in an environment variable as `MY_CELL`.
 
@@ -72,9 +65,7 @@ def get_some_transactions(access_token: str, start_date: str, end_date: str) -> 
                                          
 ```
 
-Inspecting the output of `get_some_transactions`, we see that there are multiple accounts, 337 transactions among them, but only
-100 transactions returned from this API call.  Two of these accounts are for savings, so presumably they're only 
-going to have transfers rather than purchases.
+Inspecting the output of `get_some_transactions`, we see that there are multiple accounts, 337 transactions among them, but only 100 transactions returned from this API call.  Two of these accounts are for savings, so presumably they're only going to have transfers rather than purchases.
 
 ```python
 >>> from get_some_transactions_v1 import get_some_transactions
@@ -105,11 +96,7 @@ going to have transfers rather than purchases.
 ```
 ## Get **The Right** Transactions
 
-Looking at the transactions themselves, we see that there is a `category` field which sometimes has a list of values,
-sometimes `None`.  Among the categories there are "Transfer", "Credit Card", and "Deposit": These aren't going to be
-useful in gleaning spending activity, so we'll refactor our `get_some_transactions` function to 1) skip transactions
-with those categories and 2) skip accounts with a subtype of "savings" or "cd".  Let's also 3) make sure to get all
-available transactions by using pagination and 4) just return transactions.
+Looking at the transactions themselves, we see that there is a `category` field which sometimes has a list of values, sometimes `None`.  Among the categories there are "Transfer", "Credit Card", and "Deposit": These aren't going to be useful in gleaning spending activity, so we'll refactor our `get_some_transactions` function to 1) skip transactions with those categories and 2) skip accounts with a subtype of "savings" or "cd".  Let's also 3) make sure to get all available transactions by using pagination and 4) just return transactions.
 
 ```python
 >>> some_transactions['transactions'].keys()
@@ -193,8 +180,7 @@ def get_yesterdays_transactions() -> List[dict]:
     return transactions
 ```
 
-As of 5/24/2017, the most recent transactions available in these sandbox accounts are from 5/16/17: Hence, the hardcoded
-`yesterday` value above.
+As of 5/24/2017, the most recent transactions available in these sandbox accounts are from 5/16/17: Hence, the hardcoded `yesterday` value above.
 
 Let's send an SMS to ourselves with the total spent yesterday!
 
@@ -220,13 +206,3 @@ Voila!
 
 ![mobile screenshot](screenshot.png)
 
-## Representing Money as a Float?
-
-You're gonna have a bad time, 'mkay?  If you build anything significant (budget tracker bot?) with the Plaid API, 
-be sure to convert those transaction amounts to Decimals:
-
-```python
-import decimal
-def convert_transaction_amount(transaction_amount):
-    return decimal.Decimal(transaction_amount)
-```
