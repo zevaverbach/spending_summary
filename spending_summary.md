@@ -119,12 +119,12 @@ dict_keys(['account_id', 'account_owner', 'amount', 'category', 'category_id', '
 
 
 Among the categories there are "Transfer", "Credit Card", and "Deposit": These aren't going to be useful in gleaning spending activity, so we'll refactor our `get_some_transactions` function to 
-1. skip transactions with those categories
+1. skip transactions with those categories.
 2. skip accounts with a subtype of "savings" or "cd".  
 
 Let's also 
 
-3. make sure to get all available transactions by using pagination
+3. make sure to get all available transactions by using pagination.
 4. just return transactions.
 
 
