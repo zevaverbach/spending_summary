@@ -97,15 +97,7 @@ Inspecting the output of `get_some_transactions`, we see that there are multiple
 ```
 ## Get **The Right** Transactions
 
-Looking at the transactions themselves, we see that there is a `category` field which sometimes has a list of values, sometimes `None`.  Among the categories there are "Transfer", "Credit Card", and "Deposit": These aren't going to be useful in gleaning spending activity, so we'll refactor our `get_some_transactions` function to 
-
-1. skip transactions with those categories
-2. skip accounts with a subtype of "savings" or "cd".  
-
-Let's also 
-
-3. make sure to get all available transactions by using pagination
-4. just return transactions:
+Looking at the transactions themselves, we see that there is a `category` field which sometimes has a list of values, sometimes `None`.
 
 ```python
 >>> some_transactions['transactions'].keys()
@@ -122,6 +114,17 @@ dict_keys(['account_id', 'account_owner', 'amount', 'category', 'category_id', '
  'Transfer',
  'Travel'}
 ```
+
+
+Among the categories there are "Transfer", "Credit Card", and "Deposit": These aren't going to be useful in gleaning spending activity, so we'll refactor our `get_some_transactions` function to 
+1. skip transactions with those categories
+2. skip accounts with a subtype of "savings" or "cd".  
+
+Let's also 
+
+3. make sure to get all available transactions by using pagination
+4. just return transactions.
+
 
 [get_some_transactions_v2.py](https://github.com/zevaverbach/spending_summary/blob/master/get_some_transactions_v2.py)
 
