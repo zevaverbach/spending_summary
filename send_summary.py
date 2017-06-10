@@ -3,6 +3,8 @@ from typing import List
 
 from twilio.rest import Client as TwilioClient
 
+from get_yesterdays import get_yesterdays_transactions
+
 twilio_client = TwilioClient(os.getenv('TWILIO_SID'), os.getenv('TWILIO_TOKEN'))
 
 
@@ -13,4 +15,4 @@ def send_summary(transactions: List[dict]) -> None:
 
 
 if __name__ == "__main__":
-    send_summary(get_yesterdays())
+    send_summary(get_yesterdays_transactions())

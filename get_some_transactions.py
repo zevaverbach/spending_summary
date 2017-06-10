@@ -1,5 +1,6 @@
 import math
 import os
+from pprint import pprint
 from typing import List
 
 # twilio.rest has a Client too, so let's avoid a namespace collision
@@ -11,12 +12,13 @@ plaid_client = PlaidClient(client_id=os.getenv('PLAID_CLIENT_ID'), secret=os.get
 
 # https://plaid.com/docs/api/#transactions
 MAX_TRANSACTIONS_PER_PAGE = 500
-OMIT_CATEGORIES = ["Transfer", "Credit Card", "Deposit"]
+OMIT_CATEGORIES = ["Transfer", "Credit Card", "Deposit", "Payment"]
+OMIT_ACCOUNT_SUBTYPES = ['cd', 'savings']
 
 
 def get_some_transactions(access_token: str, start_date: str, end_date: str) -> List[dict]:
     account_ids = [account['account_id'] for account in plaid_client.Accounts.get(access_token)['accounts']
-                   if account['subtype'] not in ['cd', 'savings']]
+                   if account['subtype'] not in OMIT_ACCOUNT_SUBTYPES]
 
     num_available_transactions = plaid_client.Transactions.get(access_token, start_date, end_date,
                                                                account_ids=account_ids)['total_transactions']
@@ -34,3 +36,8 @@ def get_some_transactions(access_token: str, start_date: str, end_date: str) -> 
                                     for category in transaction['category'])]
 
     return transactions
+
+some_transactions = get_some_transactions(os.getenv('CHASE_ACCESS_TOKEN'), '1972-01-01', '2017-05-26')
+print(f"there are {len(some_transactions)} transactions")
+pprint([transaction for transaction in some_transactions if transaction['amount'] < 0])
+
